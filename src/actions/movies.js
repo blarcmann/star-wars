@@ -4,13 +4,11 @@ import * as Config from '../utils/config.json';
 
 
 export const fetchMovies = () => (dispatch) => {
-  console.log('ringing')
   axios
     .get(`${Config.base_url}/films/`)
     .then((res) => {
-      console.log('data', res);
-      const { data } = res.data;
-      dispatch({ type: Types.FETCH_MOVIES, movies: data });
+      const { results } = res.data;
+      dispatch({ type: Types.FETCH_MOVIES, movies: results });
     })
     .catch((res) => {
       console.log("fetch quotes", res)

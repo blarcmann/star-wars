@@ -2,40 +2,43 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMovies } from '../actions/movies';
+import { filterOptions } from '../utils'
 
 // components
 import Crawl from '../components/crawl';
 
-// imgs
+// images
 import SWLogo from '../assets/images/starwars-logo.png';
-
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
-];
 
 
 const Home = () => {
   const [selectedMovie, setNewMovie] = useState('');
-  const [showingCrawl] = useState(true);
-
+  const [openingCrawl, setOpeningCrawl] = useState('Unavailable')
+  const [crawlVisibile, setCrawlVisibility] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchMoviesList()
+    fetchMoviesList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  const handleMovieChange = (movie) => {
-    console.log(movie)
-    return setNewMovie(movie)
-  }
-
-  const selectedCrawl = useSelector((state) => state);
-  const dispatch = useDispatch();
 
   const fetchMoviesList = () => {
     dispatch(fetchMovies());
   }
+
+  const moviesList = useSelector((state) => state.movies.moviesList);
+
+  const handleMovieChange = (movie) => {
+    if (movie && movie.openingCrawl) {
+      setCrawlVisibility(true)
+      setNewMovie(movie)
+    } else {
+      setCrawlVisibility(false)
+      return;
+    }
+  }
+
+
 
 
 
@@ -45,12 +48,12 @@ const Home = () => {
         <Select
           value={selectedMovie}
           onChange={handleMovieChange}
-          options={options}
+          options={filterOptions(moviesList)}
         />
       </div>
       <div className="crawl-container">
-        {showingCrawl
-          ? <Crawl />
+        {selectedMovie
+          ? <Crawl movie={selectedMovie} />
           : <img src={SWLogo} alt="star wars logo" className="sw-logo" />}
       </div>
     </div>

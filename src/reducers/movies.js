@@ -3,7 +3,7 @@ import { FETCH_MOVIES } from '../constants/types';
 
 const initialState = {
   counter: 0,
-  movies: [],
+  moviesList: [],
 }
 
 export default function counter(state = initialState, action) {
@@ -11,7 +11,7 @@ export default function counter(state = initialState, action) {
     case FETCH_MOVIES:
       return {
         ...state,
-        movies: [...state.movies, action.movies]
+        moviesList:  action.movies
       }
     default:
       return state;
