@@ -3,9 +3,9 @@ import React from 'react'
 export default function crawl(props) {
   const { movie } = props;
   return (
-    <div className="crawll">
+    <div className="crawl">
       <h2 className="title">{movie.label}</h2>
-      <p> {movie.openingCrawl}</p>
+      <p className="opening-crawl">{movie.openingCrawl}</p>
     </div>
   )
 }

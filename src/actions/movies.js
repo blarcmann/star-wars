@@ -14,3 +14,15 @@ export const fetchMovies = () => (dispatch) => {
       console.log("fetch quotes", res)
     })
 }
+
+
+export const fetchCharacter = (url) => (dispatch) => {
+  axios
+    .get(`${url}`)
+    .then((res) => {
+      dispatch({type: Types.FETCH_CHARACTER, character: res.data})
+    })
+    .catch((res) => {
+      console.log("fetch quotes", res)
+    })
+}

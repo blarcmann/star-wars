@@ -5,6 +5,7 @@ export const filterOptions = (movies) => {
       value: movie.url,
       label: movie.title,
       openingCrawl: movie.opening_crawl,
+      characters: movie.characters
     };
   })
 }

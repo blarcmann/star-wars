@@ -1,45 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchMovies } from '../actions/movies';
+import { fetchCharacter, fetchMovies } from '../actions/movies';
 import { filterOptions } from '../utils'
 
 // components
 import Crawl from '../components/crawl';
+import Characters from '../components/characters';
 
 // images
 import SWLogo from '../assets/images/starwars-logo.png';
 
-
 const Home = () => {
-  const [selectedMovie, setNewMovie] = useState('');
-  const [openingCrawl, setOpeningCrawl] = useState('Unavailable')
-  const [crawlVisibile, setCrawlVisibility] = useState(false);
+  const [selectedMovie, setNewMovie] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
     fetchMoviesList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [selectedMovie])
 
   const fetchMoviesList = () => {
     dispatch(fetchMovies());
   }
 
-  const moviesList = useSelector((state) => state.movies.moviesList);
-
   const handleMovieChange = (movie) => {
+    const { characters } = movie;
+    characters.map(character => {
+      dispatch(fetchCharacter(character))
+    })
     if (movie && movie.openingCrawl) {
-      setCrawlVisibility(true)
       setNewMovie(movie)
-    } else {
-      setCrawlVisibility(false)
-      return;
     }
   }
 
-
-
+  const moviesList = useSelector((state) => state.movies.moviesList);
+  const charactersList = useSelector((state) => state.movies.characters);
 
 
   return (
@@ -52,11 +48,16 @@ const Home = () => {
         />
       </div>
       <div className="crawl-container">
-        {selectedMovie
+        {selectedMovie && selectedMovie !== null
           ? <Crawl movie={selectedMovie} />
           : <img src={SWLogo} alt="star wars logo" className="sw-logo" />}
       </div>
-    </div>
+      {charactersList && charactersList.length > 0 &&
+        <div className="characters">
+          <Characters characters={charactersList} />
+        </div>
+      }
+    </div >
   )
 }
 

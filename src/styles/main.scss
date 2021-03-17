@@ -16,22 +16,56 @@ select {
   outline: none;
 }
 
-.sw-logo {
-  width: 50%;
-  display: block;
-  margin: 2.5rem auto;
-  animation: logo 5s ease-in-out infinite;
+.main {
+  height: 100vh;
+  .crawl-container {
+    height: 90%;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    .crawl {
+      height: 80%;
+      padding: 1.5rem;
+      @media (min-width: 768px) {
+        max-height: 400px;
+        width: 40%;
+        margin: auto;
+        overflow-y: auto;
+      }
+      h2.title {
+        font-size: 4rem;
+        line-height: 3rem;
+        margin: 0;
+      }
+      p.opening-crawl {
+        font-size: 2.5rem;
+        color: darken($yellow, 5);
+        // padding-top: 20%;
+        // animation: marquee 40s linear infinite;
+      }
+    }
+    .sw-logo {
+      width: 50%;
+      display: block;
+      margin: auto;
+      animation: logo 4s ease-in-out infinite;
+    }
+  }
 }
 
-
 @keyframes logo {
-    0% {
-        width: 50%;        
-    }
-    50% {
-        width: 45%;
-    }
-    100% {
-        width: 50%;
-    }
+  0% {
+    width: 50%;
+  }
+  50% {
+    width: 45%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+
+@keyframes marquee {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(0, -100%); }
 }
