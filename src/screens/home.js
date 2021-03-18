@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCharacter, fetchMovies } from '../actions/movies';
+import { fetchCharacters, fetchMovies } from '../actions/movies';
 import { filterOptions } from '../utils'
 
 // components
@@ -26,9 +26,7 @@ const Home = () => {
 
   const handleMovieChange = (movie) => {
     const { characters } = movie;
-    characters.map(character => {
-      dispatch(fetchCharacter(character))
-    })
+    dispatch(fetchCharacters(characters))
     if (movie && movie.openingCrawl) {
       setNewMovie(movie)
     }

@@ -14,6 +14,11 @@ export default function counter(state = initialState, action) {
         ...state,
         moviesList: action.movies
       }
+    case Types.CLEAR_CHARACTERS:
+      return {
+        ...state,
+        characters: []
+      }
     case Types.FETCH_CHARACTER:
       return {
         ...state,

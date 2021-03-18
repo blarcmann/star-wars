@@ -15,6 +15,12 @@ export const fetchMovies = () => (dispatch) => {
     })
 }
 
+export const fetchCharacters = (characters) => (dispatch) => {
+  dispatch({ type: Types.CLEAR_CHARACTERS })
+  characters.map(character => {
+    dispatch(fetchCharacter(character))
+  })
+}
 
 export const fetchCharacter = (url) => (dispatch) => {
   axios
