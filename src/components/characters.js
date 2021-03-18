@@ -5,6 +5,12 @@ export default function Characters(props) {
   const { characters } = props;
   const { items, requestSort } = useTableSort(characters);
 
+  const abbvGender = (gender) => {
+    if (gender.toLowerCase() === 'female') return 'f'
+    if (gender.toLowerCase() === 'male') return 'm'
+    return 'ug'
+  }
+
 
   return (
     <table>
@@ -32,7 +38,7 @@ export default function Characters(props) {
         {items.map((item, i) => (
           <tr key={`xter__${i}`}>
             <td>{item.name}</td>
-            <td>{item.gender}</td>
+            <td>{abbvGender(item.gender)}</td>
             <td>{item.height}</td>
           </tr>
         ))}

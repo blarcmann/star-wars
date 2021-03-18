@@ -2,9 +2,9 @@ import * as Types from '../constants/types'
 
 
 const initialState = {
-  counter: 0,
   moviesList: [],
   characters: [],
+  filteredCharacters: [],
 }
 
 export default function counter(state = initialState, action) {
@@ -23,6 +23,11 @@ export default function counter(state = initialState, action) {
       return {
         ...state,
         characters: [...state.characters, action.character]
+      }
+    case Types.FILTERED_CHARACTERS:
+      return {
+        ...state,
+        filteredCharacters: action.filteredCharacters
       }
     default:
       return state;
