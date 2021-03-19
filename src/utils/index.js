@@ -9,3 +9,20 @@ export const filterOptions = (movies) => {
     };
   })
 }
+
+export const convertCMToFeet = (cm) => {
+  var inches = (cm * 0.393700787).toFixed(0);
+  var feet = Math.floor(inches / 12);
+  inches %= 12;
+  return `${feet} ft ${inches} in`;
+}
+
+// slide: function(event, ui) {
+//   $("#heightslidecm").html(ui.value + 'cm');
+
+//   var inches = (ui.value * 0.393700787).toFixed(0);
+//   var feet = Math.floor(inches / 12);
+//   inches %= 12;
+
+//   $("#heightslidein").html(feet + "ft " + inches + 'in');
+// }

@@ -1,8 +1,10 @@
 import React from 'react'
 import useTableSort from '../utils/tablesort';
+import { convertCMToFeet } from '../utils';
+import '../styles/components/characters.scss'
 
 export default function Characters(props) {
-  const { characters } = props;
+  const { characters, totalCharacters, totalHeight } = props;
   const { items, requestSort } = useTableSort(characters);
 
   const abbvGender = (gender) => {
@@ -11,11 +13,20 @@ export default function Characters(props) {
     return 'ug'
   }
 
+  const getHeight = () => {
+    let height = 0;
+    items.map((item) => {
+      if (Number(item.height)) {
+        height += Number(item.height);
+      }
+    })
+    return convertCMToFeet(height)
+  }
+
 
   return (
-    <table>
-      <caption>Characters</caption>
-      <thead>
+    <table className="characters-table">
+      <thead className="header">
         <tr>
           <th>
             <button type="button" onClick={() => requestSort('name')}>
@@ -42,6 +53,11 @@ export default function Characters(props) {
             <td>{item.height}</td>
           </tr>
         ))}
+        <tr className="larger">
+          <td>{items.length} Characters </td>
+          <td></td>
+          <td>Height: {getHeight()}</td>
+        </tr>
       </tbody>
     </table>
   )

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCharacters, fetchMovies, fttt } from '../actions/movies';
+import { fetchCharacters, fetchMovies } from '../actions/movies';
 import { filterOptions } from '../utils'
 
 // components
@@ -13,7 +13,7 @@ import CharactersFilter from '../components/charactersFilter';
 import SWLogo from '../assets/images/starwars-logo.png';
 
 const Home = () => {
-  const [selectedMovie, setNewMovie] = useState(null);
+  const [selectedMovie, setNewMovie] = useState('Please wait...');
   const [filtering, setFiltering] = useState(false);
   const [filteredCharacters, setFilteredCharacters] = useState(null);
   const [gender, setGender] = useState(null);
@@ -51,10 +51,14 @@ const Home = () => {
     if (gender === 'all') {
       return setFilteredCharacters(charactersList);
     }
+    if (gender === 'unknown') {
+      setFiltering(true)
+      filteredXters = charactersList.filter(character => (character.gender.toLowerCase() !== 'female' && character.gender.toLowerCase() !== 'male'))
+      return setFilteredCharacters(filteredXters);
+    }
     if (gender !== null) {
       setFiltering(true)
-      let fc = charactersList.filter(character => character.gender.toLowerCase() === gender)
-      filteredXters = filteredXters.concat(fc);
+      filteredXters = charactersList.filter(character => character.gender.toLowerCase() === gender)
       return setFilteredCharacters(filteredXters);
     }
     setFiltering(false)
@@ -77,6 +81,7 @@ const Home = () => {
       </div>
       {charactersList && charactersList.length > 0 &&
         <div className="characters">
+          <h2 className="table-title">{selectedMovie.label} Characters</h2>
           <CharactersFilter handleChange={handleGenderSelect} state={gender} />
           <Characters characters={filtering ? filteredCharacters : charactersList} />
         </div>

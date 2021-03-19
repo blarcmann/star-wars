@@ -18,6 +18,7 @@ select {
 
 .main {
   height: 100vh;
+  padding: 1.25rem;
   .crawl-container {
     height: 90%;
     display: flex;
@@ -51,6 +52,12 @@ select {
       animation: logo 4s ease-in-out infinite;
     }
   }
+  .table-title {
+    text-align: center;
+    color: #fff;
+    font-size: 1.875rem;
+    // text-decoration: underline;
+  }
 }
 
 @keyframes logo {
@@ -66,6 +73,10 @@ select {
 }
 
 @keyframes marquee {
-    0%   { transform: translate(0, 0); }
-    100% { transform: translate(0, -100%); }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, -100%);
+  }
 }

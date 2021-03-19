@@ -1,26 +1,21 @@
 import React from 'react'
+import '../styles/components/characters.scss';
+
+const filters = ['all', 'female', 'male', 'unknown']
 
 export default function charactersFilter(props) {
   const { handleChange, state } = props;
-  console.log('statehere', state)
+  const renderFilter = () => {
+    return filters.map((filter) => (
+      <div className="item" key={filter}>
+        <label htmlFor="female">{filter}</label>
+        <input type="radio" name={filter} checked={state === filter } value={filter} onChange={handleChange} />
+      </div>
+    ))
+  }
   return (
-    <div className="filter-items">
-      <div className="item">
-        <label htmlFor="female">All</label>
-        <input type="radio" name="all" checked={state === 'all'} value="all" onChange={handleChange} />
-      </div>
-      <div className="item">
-        <label htmlFor="female">Female</label>
-        <input type="radio" name="female" checked={state === 'female'} value="female" onChange={handleChange} />
-      </div>
-      <div className="item">
-        <label htmlFor="male">Male</label>
-        <input type="radio" name="male" checked={state === 'male'} value="male" onChange={handleChange} />
-      </div>
-      <div className="item">
-        <label htmlFor="unknown">Unknown</label>
-        <input type="radio" name="unknown" checked={state === 'unknown'} value="unknown" onChange={handleChange} />
-      </div>
+    <div className="filterer">
+      {renderFilter()}
     </div>
   )
 }
