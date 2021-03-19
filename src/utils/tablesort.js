@@ -7,8 +7,7 @@ const useTableSort = (items, config = null) => {
     let sortableItems = [...items];
     if (sortConfig !== null) {
       sortableItems.sort((a, b) => {
-        if (sortConfig.key === 'height') {
-          console.log('we upppp')
+        if (sortConfig.key === 'height' && Number(a[sortConfig.key]) && Number(b[sortConfig.key])) {
           if (sortConfig.direction === 'ascending') {
             return sortConfig.direction === 'ascending' ? a[sortConfig.key] - b[sortConfig.key] : b[sortConfig.key] - a[sortConfig.key];
           }

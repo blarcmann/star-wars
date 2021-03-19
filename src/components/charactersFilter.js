@@ -3,7 +3,7 @@ import '../styles/components/characters.scss';
 
 const filters = ['all', 'female', 'male', 'unknown']
 
-export default function charactersFilter(props) {
+export default function CharactersFilter(props) {
   const { handleChange, state } = props;
   const renderFilter = () => {
     return filters.map((filter) => (

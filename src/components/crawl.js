@@ -1,11 +1,13 @@
 import React from 'react'
 
-export default function crawl(props) {
+export default function Crawl(props) {
   const { movie } = props;
   return (
     <div className="crawl">
-      <h2 className="title">{movie.label}</h2>
-      <p className="opening-crawl">{movie.openingCrawl}</p>
+      <div className="opening-crawl">
+        <h2 className="title">{movie.label}</h2>
+        <p>{movie.openingCrawl}</p>
+      </div>
     </div>
   )
 }

@@ -33,16 +33,16 @@ select {
         margin: auto;
         overflow-y: auto;
       }
-      h2.title {
-        font-size: 4rem;
-        line-height: 3rem;
-        margin: 0;
-      }
-      p.opening-crawl {
-        font-size: 2.5rem;
+      .opening-crawl {
+        h2.title {
+          font-size: 4rem;
+          line-height: 3rem;
+          margin: 0;
+        }
+        font-size: 1.5rem;
         color: darken($yellow, 5);
-        // padding-top: 20%;
-        // animation: marquee 40s linear infinite;
+        padding-top: 10%;
+        animation: marquee 40s linear infinite;
       }
     }
     .sw-logo {

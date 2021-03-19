@@ -4,7 +4,7 @@ import { convertCMToFeet } from '../utils';
 import '../styles/components/characters.scss'
 
 export default function Characters(props) {
-  const { characters, totalCharacters, totalHeight } = props;
+  const { characters } = props;
   const { items, requestSort } = useTableSort(characters);
 
   const abbvGender = (gender) => {
@@ -19,8 +19,9 @@ export default function Characters(props) {
       if (Number(item.height)) {
         height += Number(item.height);
       }
+      return {height: height, ftin: convertCMToFeet(height)}
     })
-    return convertCMToFeet(height)
+    return { height: height, ftin: convertCMToFeet(height) }
   }
 
 
@@ -56,7 +57,7 @@ export default function Characters(props) {
         <tr className="larger">
           <td>{items.length} Characters </td>
           <td></td>
-          <td>Height: {getHeight()}</td>
+          <td>Height: {`${getHeight().height} cm (${getHeight().ftin})`}</td>
         </tr>
       </tbody>
     </table>

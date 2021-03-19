@@ -5,15 +5,13 @@ import { fetchCharacters, fetchMovies } from '../actions/movies';
 import { filterOptions } from '../utils'
 
 // components
-import Crawl from '../components/crawl';
-import Characters from '../components/characters';
-import CharactersFilter from '../components/charactersFilter';
+import { Characters, CharactersFilter, Crawl } from '../components'
 
 // images
 import SWLogo from '../assets/images/starwars-logo.png';
 
 const Home = () => {
-  const [selectedMovie, setNewMovie] = useState('Please wait...');
+  const [selectedMovie, setNewMovie] = useState(null);
   const [filtering, setFiltering] = useState(false);
   const [filteredCharacters, setFilteredCharacters] = useState(null);
   const [gender, setGender] = useState(null);
@@ -42,11 +40,11 @@ const Home = () => {
   const handleGenderSelect = (e) => {
     if (e.target.value) {
       setGender(e.target.value)
-      filterXtr(e.target.value);
+      filterCharacter(e.target.value);
     }
   }
 
-  const filterXtr = (gender) => {
+  const filterCharacter = (gender) => {
     let filteredXters = [];
     if (gender === 'all') {
       return setFilteredCharacters(charactersList);

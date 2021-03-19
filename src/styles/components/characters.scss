@@ -1,3 +1,5 @@
+@import "../Variables.scss";
+
 .characters-table {
   width: 100%;
   table-layout: fixed;
@@ -34,7 +36,7 @@
   }
   tr.larger {
     td {
-      font-size: 1.25rem;
+      color: $yellow;
     }
   }
 }
