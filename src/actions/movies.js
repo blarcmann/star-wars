@@ -30,7 +30,7 @@ export const fetchCharacter = (url) => (dispatch) => {
       dispatch({type: Types.FETCH_CHARACTER, character: res.data})
     })
     .catch((res) => {
-      alert('Please reload page')
+      // alert('Please reload page')
       console.log("fetch xter", res)
     })
 }
