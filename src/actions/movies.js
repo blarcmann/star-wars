@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as Types from '../constants/types'
 import * as Config from '../utils/config.json';
+import { extractNumbers } from '../utils'
 
 
 export const fetchMovies = () => (dispatch) => {
@@ -19,15 +20,15 @@ export const fetchMovies = () => (dispatch) => {
 export const fetchCharacters = (characters) => (dispatch) => {
   dispatch({ type: Types.CLEAR_CHARACTERS })
   characters.map(character => {
-    return dispatch(fetchCharacter(character))
+    return dispatch(fetchCharacter(extractNumbers(character)))
   })
 }
 
-export const fetchCharacter = (url) => (dispatch) => {
+export const fetchCharacter = (id) => (dispatch) => {
   axios
-    .get(`${url}`)
+    .get(`${Config.base_url}/people/${id}`)
     .then((res) => {
-      dispatch({type: Types.FETCH_CHARACTER, character: res.data})
+      dispatch({ type: Types.FETCH_CHARACTER, character: res.data })
     })
     .catch((res) => {
       // alert('Please reload page')

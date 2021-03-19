@@ -17,5 +17,8 @@ const convertCMToFeet = (cm) => {
   return `${feet} ft ${inches} in`;
 }
 
+const extractNumbers = (str) => {
+  return str.match(/[0-9]+/g);
+}
 
-export {filterOptions, convertCMToFeet}
+export { filterOptions, convertCMToFeet, extractNumbers}
