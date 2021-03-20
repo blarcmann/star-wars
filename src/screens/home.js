@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import Select from 'react-select';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCharacters, fetchMovies } from '../actions/movies';
@@ -65,23 +65,35 @@ const Home = () => {
 
   return (
     <div className="main">
-      <div className="selector">
-        <Select
-          value={selectedMovie}
-          onChange={handleMovieChange}
-          options={filterOptions(moviesList)}
-        />
-      </div>
-      <div className="crawl-container">
-        {selectedMovie && selectedMovie !== null
-          ? <Crawl movie={selectedMovie} />
-          : <img src={SWLogo} alt="star wars logo" className="sw-logo" />}
-      </div>
-      {charactersList && charactersList.length > 0 &&
-        <div className="characters">
-          <h2 className="table-title">{selectedMovie.label} Characters</h2>
-          <CharactersFilter handleChange={handleGenderSelect} state={gender} />
-          <Characters characters={filtering ? filteredCharacters : charactersList} />
+      {(moviesList && moviesList.length > 0)
+        ?
+        <Fragment>
+          <div className="selector">
+            <Select
+              value={selectedMovie}
+              onChange={handleMovieChange}
+              options={filterOptions(moviesList)}
+            />
+          </div>
+          <div className="crawl-container">
+            {selectedMovie && selectedMovie !== null
+              ? <Crawl movie={selectedMovie} />
+              : <img src={SWLogo} alt="star wars logo" className="sw-logo" />}
+          </div>
+          {charactersList && charactersList.length > 0 &&
+            <div className="characters">
+              <h2 className="table-title">{selectedMovie.label} Characters</h2>
+              <CharactersFilter handleChange={handleGenderSelect} state={gender} />
+              <Characters characters={filtering ? filteredCharacters : charactersList} />
+            </div>
+          }
+        </Fragment>
+        :
+        <div class="loading">
+          <div class="item yellow"></div>
+          <div class="item red"></div>
+          <div class="item blue"></div>
+          <div class="item violet"></div>
         </div>
       }
     </div >
