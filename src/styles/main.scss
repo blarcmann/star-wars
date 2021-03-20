@@ -20,7 +20,7 @@ select {
   height: 100vh;
   padding: 1.25rem;
   .crawl-container {
-    height: 90%;
+    height: 80%;
     display: flex;
     justify-items: center;
     align-items: center;
@@ -42,7 +42,7 @@ select {
         font-size: 1.5rem;
         color: darken($yellow, 5);
         padding-top: 10%;
-        animation: marquee 40s linear infinite;
+        animation: marquee 10s linear infinite;
       }
     }
     .sw-logo {

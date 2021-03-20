@@ -7,7 +7,7 @@ import { filterOptions } from '../utils'
 // components
 import { Characters, CharactersFilter, Crawl } from '../components'
 
-// images
+// image
 import SWLogo from '../assets/images/starwars-logo.png';
 
 const Home = () => {
