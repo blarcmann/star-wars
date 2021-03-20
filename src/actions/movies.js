@@ -9,7 +9,7 @@ export const fetchMovies = () => (dispatch) => {
     .get(`${Config.base_url}/films/`)
     .then((res) => {
       console.log('ress', res)
-      const { results } = res.data.contents;
+      const { results } = JSON.parse(res.data.contents);
       dispatch({ type: Types.FETCH_MOVIES, movies: results });
     })
     .catch((res) => {
@@ -29,7 +29,7 @@ export const fetchCharacter = (id) => (dispatch) => {
   axios
     .get(`${Config.base_url}/people/${id}`)
     .then((res) => {
-      dispatch({ type: Types.FETCH_CHARACTER, character: res.data.contents })
+      dispatch({ type: Types.FETCH_CHARACTER, character: JSON.parse(res.data.contents) })
     })
     .catch((res) => {
       // alert('Please reload page')
